@@ -1,0 +1,82 @@
+{
+  "doctors": [
+    {
+      "id": 1,
+      "name": "Dr. John Doe",
+      "pic": "assets/images/doc.png",
+      "specialization": "Cardiologist",
+      "qualification": "MBBS, MD",
+      "rating": 4.5,
+      "reviews": 120,
+      "location": {"latitude": 40.7128, "longitude": -74.0060},
+      "available_time": {"hours": 8, "minutes": 0},
+      "fees": "$100",
+      "gender": "Male"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Jane Smith",
+      "pic": "assets/images/doc1.png",
+      "specialization": "Pediatrician",
+      "qualification": "MBBS, DCH",
+      "rating": 4.8,
+      "reviews": 90,
+      "location": {"latitude": 34.0522, "longitude": -118.2437},
+      "available_time": {"hours": 7, "minutes": 30},
+      "fees": "$120",
+      "gender": "Female"
+    },
+    {
+      "id": 3,
+      "name": "Dr. Michael Johnson",
+      "pic": "assets/images/doc2.png",
+      "specialization": "Dermatologist",
+      "qualification": "MBBS, MD (Dermatology)",
+      "rating": 4.3,
+      "reviews": 150,
+      "location": {"latitude": 51.5074, "longitude": -0.1278},
+      "available_time": {"hours": 6, "minutes": 30},
+      "fees": "$90",
+      "gender": "Male"
+    },
+    {
+      "id": 4,
+      "name": "Dr. Emily Wilson",
+      "pic": "assets/images/doc3.png",
+      "specialization": "Obstetrician/Gynecologist",
+      "qualification": "MBBS, MD (OB/GYN)",
+      "rating": 4.7,
+      "reviews": 110,
+      "location": {"latitude": 41.8781, "longitude": -87.6298},
+      "available_time": {"hours": 9, "minutes": 0},
+      "fees": "$150",
+      "gender": "Female"
+    },
+    {
+      "id": 5,
+      "name": "Dr. David Garcia",
+      "pic": "assets/images/doc4.png",
+      "specialization": "Orthopedic Surgeon",
+      "qualification": "MBBS, MS (Orthopedics)",
+      "rating": 4.6,
+      "reviews": 100,
+      "location": {"latitude": 33.7490, "longitude": -84.3880},
+      "available_time": {"hours": 8, "minutes": 30},
+      "fees": "$130",
+      "gender": "Male"
+    },
+    {
+      "id": 6,
+      "name": "Dr. Sarah Patel",
+      "pic": "assets/images/doc5.jpg",
+      "specialization": "Psychiatrist",
+      "qualification": "MBBS, MD (Psychiatry)",
+      "rating": 4.9,
+      "reviews": 95,
+      "location": {"latitude": 34.0522, "longitude": -118.2437},
+      "available_time": {"hours": 7, "minutes": 0},
+      "fees": "$140",
+      "gender": "Female"
+    }
+  ]
+}
