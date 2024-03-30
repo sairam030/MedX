@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:intern_medx/src/widgets/filter_menu.dart';
+import 'package:intern_medx/src/common/colors.dart';
 import 'package:provider/provider.dart';
 import 'package:intern_medx/src/provider/doctor_list_provider.dart';
 import 'package:intern_medx/src/widgets/doctor_card.dart';
 import 'package:intern_medx/src/widgets/sort_menu.dart';
 
 class DoctorListScreen extends StatelessWidget {
+
+  final List<String> sortOptions = [
+    'Earliest Available',
+    'Highest Rating',
+    'Nearest',
+    'Fee: Low to High',
+    'Fee: High to Low',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: AppColors.scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text('Our doctors', style: TextStyle(color: Colors.white)),
-        backgroundColor: const Color.fromRGBO(63, 92, 184, 1),
+        title: const Text('Our doctors', style: TextStyle(color:AppColors.whiteColor)),
+        backgroundColor: AppColors.primaryColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -28,17 +37,17 @@ class DoctorListScreen extends StatelessWidget {
                     child: Container(
                       height: 48,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.whiteColor,
                         borderRadius: BorderRadius.circular(28),
                         border: Border.all(
-                          color: const Color.fromRGBO(233, 233, 233, 1),
+                          color: AppColors.searchBarColor,
                           width: 1,
                         ),
                       ),
                       child: Row(
                         children: [
                           const SizedBox(width: 16),
-                          const Icon(Icons.search, color: Color.fromRGBO(107, 114, 128, 1)),
+                          const Icon(Icons.search, color: AppColors.secondaryTextColor),
                           const SizedBox(width: 8),
                           Expanded(
                             child: TextField(
@@ -59,7 +68,7 @@ class DoctorListScreen extends StatelessWidget {
               },
             ),
 
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             // Buttons Row
             Row(
@@ -77,7 +86,7 @@ class DoctorListScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           height: 1.5,
                           letterSpacing: 0.15,
-                          color: Colors.black,
+                          color: AppColors.textColor,
                         ),
                       );
                     },
@@ -87,49 +96,45 @@ class DoctorListScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return DoctorFilterBottomSheet();
-                            },
-                          );
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[200],
-                            border: Border.all(color: Color.fromRGBO(107, 114, 128, 1), width: 1),
-                          ),
-                          child: const Row(
-                            children: [
-                              SizedBox(width: 6),
-                              Icon(Icons.filter_alt_outlined, color: Color.fromRGBO(107, 114, 128, 1)),
-                              SizedBox(width: 4),
-                              Text(
-                                'Filter',
-                                style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: 0.15,
-                                  color: Color.fromRGBO(107, 114, 128, 1),
-                                ),
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: AppColors.scaffoldBackgroundColor,
+                          border: Border.all(color: AppColors.secondaryTextColor, width: 1),
+                        ),
+                        child: const Row(
+                          children: [
+                            SizedBox(width: 6),
+                            Icon(Icons.filter_alt_outlined, color: AppColors.secondaryTextColor),
+                            SizedBox(width: 4),
+                            Text(
+                              'Filter',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 0.15,
+                                color: AppColors.secondaryTextColor,
                               ),
-                              SizedBox(width: 6),
-                            ],
-                          ),
+                            ),
+                            SizedBox(width: 6),
+                          ],
                         ),
                       ),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       GestureDetector(
                         onTap: () {
                           showModalBottomSheet(
                             context: context,
                             builder: (context) {
-                              return SortMenu();
+                              return SortMenu(
+                                selectedIndex: Provider.of<DoctorProvider>(context, listen: false).selectedSortIndex,
+                                options: sortOptions,
+                                onSort: (index) {
+                                  Provider.of<DoctorProvider>(context, listen: false).sortDoctors(index);
+                                },
+                              );
                             },
                           );
                         },
@@ -138,12 +143,12 @@ class DoctorListScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.grey[200],
-                            border: Border.all(color: Color.fromRGBO(107, 114, 128, 1), width: 1),
+                            border: Border.all(color:AppColors.secondaryTextColor, width: 1),
                           ),
                           child: const Row(
                             children: [
                               SizedBox(width: 6),
-                              Icon(Icons.sort, color: Color.fromRGBO(107, 114, 128, 1)),
+                              Icon(Icons.sort, color: AppColors.secondaryTextColor),
                               SizedBox(width: 4),
                               Text(
                                 'Sort',
@@ -152,7 +157,7 @@ class DoctorListScreen extends StatelessWidget {
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   letterSpacing: 0.15,
-                                  color: Color.fromRGBO(107, 114, 128, 1),
+                                  color: AppColors.secondaryTextColor,
                                 ),
                               ),
                               SizedBox(width: 6),
@@ -166,7 +171,7 @@ class DoctorListScreen extends StatelessWidget {
               ],
             ),
 
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             // Doctor List
             Expanded(
@@ -177,7 +182,13 @@ class DoctorListScreen extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: provider.filteredDoctors.length,
                       itemBuilder: (context, index) {
-                        return DoctorCard(provider.filteredDoctors[index]);
+                        return DoctorCard(
+                          doctor: provider.filteredDoctors[index],
+                          isBookmarked: provider.isBookmarked(provider.filteredDoctors[index].id),
+                          toggleBookmark: (bool isBookmarked) {
+                            provider.toggleBookmark(provider.filteredDoctors[index].id);
+                          },
+                        );
                       },
                     ),
                   );

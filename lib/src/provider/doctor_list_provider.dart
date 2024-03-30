@@ -5,14 +5,12 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:intern_medx/src/models/doctor.dart';
 
-enum Gender { Male, Female }
 
 class DoctorProvider extends ChangeNotifier {
   List<Doctor> _doctors = [];
   List<Doctor> _filteredDoctors = [];
   final List<int> _bookmarkedDoctorIds = [];
   int _selectedSortIndex = 0;
-  Gender _selectedGenderFilter = Gender.Male; // Initialize with a default value
 
   // Bangalore location coordinates which are for the user's location
   double userLat = 12.9716;
@@ -20,7 +18,6 @@ class DoctorProvider extends ChangeNotifier {
 
   List<Doctor> get filteredDoctors => _filteredDoctors;
   int get selectedSortIndex => _selectedSortIndex;
-  Gender get selectedGenderFilter => _selectedGenderFilter;
 
   DoctorProvider() {
     loadDoctors();
@@ -35,27 +32,13 @@ class DoctorProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void applyFilters() {
-    _filteredDoctors = _doctors.where((doctor) {
-      if (_selectedGenderFilter != null && doctor.gender != _selectedGenderFilter) {
-        return false; // Skip doctors with a different gender than the selected gender
-      }
-      return true; // Include doctor in filtered list
-    }).toList();
-  }
+
 
   void filterDoctors(String query) {
     _filteredDoctors = _doctors.where((doctor) {
       return doctor.name.toLowerCase().contains(query.toLowerCase()) ||
           doctor.specialization.toLowerCase().contains(query.toLowerCase());
     }).toList();
-    applyFilters(); // Apply gender filter
-    notifyListeners();
-  }
-
-  void setGenderFilter(Gender gender) {
-    _selectedGenderFilter = gender;
-    applyFilters(); // Apply gender filter
     notifyListeners();
   }
 

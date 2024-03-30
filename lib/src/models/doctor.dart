@@ -1,4 +1,7 @@
 // doctor.dart
+import 'package:intern_medx/src/models/location.dart';
+import 'package:intern_medx/src/models/time.dart';
+
 class Doctor {
   final int id;
   final String name;
@@ -43,32 +46,5 @@ class Doctor {
   }
 }
 
-// location.dart
-class Location {
-  final double latitude;
-  final double longitude;
 
-  Location({required this.latitude, required this.longitude});
 
-  factory Location.fromJson(Map<String, dynamic> json) {
-    return Location(
-      latitude: json['latitude'],
-      longitude: json['longitude'],
-    );
-  }
-}
-
-// time.dart
-class Time {
-  final int hours;
-  final int minutes;
-
-  Time({required this.hours, required this.minutes});
-
-  factory Time.fromJson(Map<String, dynamic> json) {
-    return Time(
-      hours: json['hours'],
-      minutes: json['minutes'],
-    );
-  }
-}
