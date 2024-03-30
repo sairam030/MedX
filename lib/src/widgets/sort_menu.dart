@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern_medx/src/common/colors.dart';
+import 'package:intern_medx/src/theme/colors.dart';
 
 class SortMenu extends StatelessWidget {
   final List<String> options;

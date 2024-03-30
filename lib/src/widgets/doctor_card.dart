@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern_medx/src/common/colors.dart';
+import 'package:intern_medx/src/theme/colors.dart';
 import 'package:intern_medx/src/models/doctor.dart';
 
 class DoctorCard extends StatelessWidget {
@@ -42,11 +42,14 @@ class DoctorCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        doctor.name,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                      Expanded( // Wrap with Expanded to prevent overflow
+                        child: Text(
+                          doctor.name,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       GestureDetector(
@@ -73,18 +76,23 @@ class DoctorCard extends StatelessWidget {
                     doctor.specialization,
                     style: const TextStyle(
                         fontSize: 14, fontWeight: FontWeight.w400),
+                    overflow: TextOverflow.ellipsis,
+
                   ),
                   const SizedBox(height: 4),
                   Row(
                     children: [
                       const Icon(Icons.school_outlined,
                           color: AppColors.secondaryTextColor),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text(
-                          doctor.qualification,
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w400),
+                      Flexible( // Wrap with Flexible to prevent overflow
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                          child: Text(
+                            doctor.qualification,
+                            style: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w400),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
                     ],
@@ -95,11 +103,11 @@ class DoctorCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.star,
-                                color: AppColors.accentColor),
+                            const Icon(Icons.star, color: AppColors.accentColor),
                             Text(
                               ' ${doctor.rating}',
                               style: const TextStyle(fontSize: 14),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ],
                         ),
@@ -107,12 +115,15 @@ class DoctorCard extends StatelessWidget {
                           color: AppColors.dividerColor,
                           thickness: 1,
                         ),
-                        Text(
-                          '${doctor.reviews} Reviews',
-                          style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.secondaryTextColor),
+                        Expanded( // Wrap with Expanded to prevent overflow
+                          child: Text(
+                            '${doctor.reviews} Reviews',
+                            style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.secondaryTextColor),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ],
                     ),
