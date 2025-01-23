@@ -3,7 +3,7 @@
 
 Installation Instructions
 
-To install and run the Flutter Non-Linear Video Session System, please follow these steps:
+To install and run , please follow these steps:
 
 1. Ensure that you have Flutter and Dart SDK installed on your system. If not, please refer to the Flutter Installation Guide for instructions.
 
